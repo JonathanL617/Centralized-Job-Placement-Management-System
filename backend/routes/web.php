@@ -35,17 +35,20 @@ Route::middleware('auth')->group(function () {
     // -------------------------------------------------------
     // Student Routes
     // -------------------------------------------------------
-    Route::prefix('student')->name('student.')->group(function () {
+    Route::prefix('student')->name('student.')->middleware(\App\Http\Middleware\RoleMiddleware::class.':student')->group(function () {
         Route::get('/dashboard', fn() => view('student.dashboard'))->name('dashboard');
         Route::get('/jobs',      fn() => view('student.jobs'))->name('jobs.index');
         Route::get('/applications', fn() => view('student.applications'))->name('applications.index');
-        Route::get('/resume',    fn() => view('student.resume'))->name('resume.index');
+        
+        // Resume Routes
+        Route::get('/resume', [\App\Http\Controllers\Student\ResumeController::class, 'index'])->name('resume.index');
+        Route::post('/resume', [\App\Http\Controllers\Student\ResumeController::class, 'store'])->name('resume.store');
     });
 
     // -------------------------------------------------------
     // Employer Routes
     // -------------------------------------------------------
-    Route::prefix('employer')->name('employer.')->group(function () {
+    Route::prefix('employer')->name('employer.')->middleware(\App\Http\Middleware\RoleMiddleware::class.':employer')->group(function () {
         Route::get('/dashboard',    fn() => view('employer.dashboard'))->name('dashboard');
         Route::get('/jobs',         fn() => view('employer.jobs'))->name('jobs.index');
         Route::get('/applications', fn() => view('employer.applications'))->name('applications.index');
@@ -54,7 +57,7 @@ Route::middleware('auth')->group(function () {
     // -------------------------------------------------------
     // Admin Routes
     // -------------------------------------------------------
-    Route::prefix('admin')->name('admin.')->group(function () {
+    Route::prefix('admin')->name('admin.')->middleware(\App\Http\Middleware\RoleMiddleware::class.':admin')->group(function () {
         Route::get('/dashboard', fn() => view('admin.dashboard'))->name('dashboard');
         Route::get('/users',     fn() => view('admin.users'))->name('users.index');
         Route::get('/jobs',      fn() => view('admin.jobs'))->name('jobs.index');

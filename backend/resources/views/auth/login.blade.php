@@ -12,8 +12,7 @@
 
         {{-- Login Card --}}
         <div class="login-card" id="loginCard">
-            <img src="{{ asset('images/inti_logo.jpeg') }}" alt="INTI Job Portal">
-            <h3>INTI Job Portal</h3>
+            <h3 class="mt-3">Job Placement System</h3>
             <h5>Login</h5>
 
             {{-- Error Message --}}
@@ -42,8 +41,7 @@
         {{-- Forgot Password Card --}}
         <div class="reset-password-card" id="forgotCard" style="display: none;">
             <button class="back-button" onclick="showCard('loginCard')">&#60; Back</button>
-            <img src="{{ asset('images/inti_logo.jpeg') }}" alt="Logo">
-            <h4>Reset Password</h4>
+            <h4 class="mt-5">Reset Password</h4>
 
             @if (session('reset_status'))
                 <div class="alert-success">{{ session('reset_status') }}</div>

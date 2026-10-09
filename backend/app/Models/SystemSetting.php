@@ -11,4 +11,6 @@ class SystemSetting extends Model
     public $incrementing = false;
     protected $keyType = 'string';
     protected $fillable = ['setting_key', 'setting_value'];
+
+    const CREATED_AT = null;
 }

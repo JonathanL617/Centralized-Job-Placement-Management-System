@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 #[Fillable([
-    'email', 'password', 'role', 'is_first_login'
+    'name', 'email', 'password', 'role', 'is_first_login'
 ])]
 #[Hidden(['password'])]
 class User extends Authenticatable

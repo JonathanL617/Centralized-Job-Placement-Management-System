@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Administrator extends Model
 {
+    public $timestamps = false;
     protected $primaryKey = 'admin_id';
     protected $fillable = ['user_id', 'staff_id', 'faculty_department'];
 
